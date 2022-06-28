@@ -53,4 +53,4 @@ py -m pip windows-curses
 
 # How does it work?
 
-- Look at the wiki section. We will attach documentation there!
+- So here is the problem. My mother tongue is Persian and English is not my primarily used language. I know how my code works but I can't explain it in English. You can either wait until I master the mentioned language or help me to translate documents from Persian to English.
