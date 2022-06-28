@@ -9,11 +9,14 @@ Here is a basic calculator written in python.
 - Python 3.10+
 
 - "windows-curses" library.
+```
+py -m pip windows-curses
+```
 
 # Features:
 
 - Supported mathematical operations and hotkeys:
-'''
+```
 -"+": Addition.
 -"-": Submission.
 -"*": Multiplication.
@@ -24,7 +27,7 @@ Here is a basic calculator written in python.
 -"Enter" or "Return": Save a valid mathematical expression and its answer to the history panel.
 -"backspace": to remove the last character from the mathematical expression.
 -"ArrowUp" and "ArrowDown": Navigate the history panel.
-'''
+```
 
 - Real-time UI with an error handler and auto-correction.
 
