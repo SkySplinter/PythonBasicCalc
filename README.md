@@ -35,6 +35,8 @@ py -m pip windows-curses
 
 - History panel.
 
+- Obeying PEP-8 in source code.
+
 # known bugs and limitations:
 
 - This program creates a "history.txt" file and deletes previous entries (if there were any); Although you can change this behavior by using "r+" instead of "w+" in the file handling section of the code.
