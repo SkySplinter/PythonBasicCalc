@@ -2,7 +2,7 @@ import curses
 
 
 # PythonBasicCalc By Sepehr Ghasemi (AKA: SkySplinter)
-# V 0.1
+# V 0.1.1
 if __name__ != "__main__":
 
     print("'PythonBasicCalc' needs to run individually. although you can use calculator function " +
@@ -10,7 +10,7 @@ if __name__ != "__main__":
     quit()
 
 
-def calculator(sub_expression: list):
+def calculator(sub_expression: list, operators: list):
 
     if sub_expression[0] == "(":
         sub_expression.pop(0)
@@ -23,20 +23,23 @@ def calculator(sub_expression: list):
         idx = 0
 
         if sub_expression.count("^") > 0:
+            idx = len(sub_expression)-2
+
             while sub_expression.count("^") > 0:
 
                 if sub_expression[idx] == "^":
                     sub_expression[idx-1:idx+2] = [sub_expression[idx-1] ** sub_expression[idx+1]]
+                    idx = idx - 1
 
                 else:
-                    idx = idx + 1
+                    idx = idx - 1
 
         elif sub_expression.count("-") > 0:
             while sub_expression.count("-") > 0:
 
                 if sub_expression[idx] == "-":
 
-                    if idx == 0:
+                    if (idx == 0) or (sub_expression[idx-1] in operators and sub_expression[idx] == "-"):
                         sub_expression[idx:idx+2] = [-1 * sub_expression[idx+1]]
 
                     else:
@@ -198,7 +201,7 @@ def analyser(math_expression):
         ta = ((list(lvl_dict.items())[depth])[-1])[-1]
 
         try:
-            math_expression[az:int(ta) + 1] = calculator(math_expression[az:int(ta) + 1])
+            math_expression[az:int(ta) + 1] = calculator(math_expression[az:int(ta) + 1], operators)
         except ZeroDivisionError:
             result = ("[ERROR]", "You tried divide items by zero!")
             return math_expression_cleaned, result
@@ -287,7 +290,7 @@ def main(screen):
         curses.flushinp()
         inp = screen.getch()
 
-        if inp == 8:
+        if inp == 8:  # BackSpace
 
             if len(math_expression) > 0:
 
@@ -333,7 +336,7 @@ def main(screen):
 
             continue
 
-        elif inp == 27:
+        elif inp == 27:  # ESC
 
             result = ("[END]", "May the god be with you.")
 
